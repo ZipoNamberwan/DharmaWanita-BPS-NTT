@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DarmaWanita</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="web_service">http://192.168.43.31/darmawanita/</string>
+    <string name="title_activity_view_buku">Detail Buku</string>
+    <string name="title_activity_search_result">Hasil Search</string>
+    <string name="search_hint">Search…</string>
+</resources>
