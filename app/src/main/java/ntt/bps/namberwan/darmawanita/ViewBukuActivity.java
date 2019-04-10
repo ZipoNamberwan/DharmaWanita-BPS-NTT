@@ -93,7 +93,7 @@ public class ViewBukuActivity extends AppCompatActivity {
         tanggalMasukTextView.setText(tanggalMasuk);
         sumberTextView.setText(sumber);
         if (!isDipinjam){
-            statusTextView.setText("Available");
+            statusTextView.setText("Tersedia");
             statusTextView.setTextColor(getResources().getColor(R.color.md_green_600));
         }else {
             statusTextView.setText("Dipinjam Oleh: " + peminjam + " pada " + tanggalPinjam);

@@ -85,7 +85,7 @@ public class BukuAdapter extends RecyclerView.Adapter<BukuAdapter.Holder>{
                 .fit()
                 .into(holder.gambar);
         if (!bukuItem.isDipinjam()){
-            holder.status.setText("Available" );
+            holder.status.setText("Tersedia" );
             holder.status.setTextColor(context.getResources().getColor(R.color.md_green_600));
         }else {
             holder.status.setText("Dipinjam");
