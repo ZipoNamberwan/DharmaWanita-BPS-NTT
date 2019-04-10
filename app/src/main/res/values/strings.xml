@@ -4,8 +4,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="web_service">http://192.168.43.31/darmawanita/</string>
+    <string name="web_service">http://192.168.1.46/darmawanita/</string>
     <string name="title_activity_view_buku">Detail Buku</string>
     <string name="title_activity_search_result">Hasil Search</string>
     <string name="search_hint">Search…</string>
+
+    <string name="download_eta_sec">%1$ds left</string>
+    <string name="download_eta_min">%1$dm %2$ds left</string>
+    <string name="download_eta_hrs">%1$dh %2$dm %3$ds left</string>
 </resources>

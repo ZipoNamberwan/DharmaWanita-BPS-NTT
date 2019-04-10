@@ -11,9 +11,10 @@ public class BukuItem {
     private String tanggalPinjam;
     private String urlGambar;
     private String sumber;
+    private String pdf;
 
     public BukuItem(String id, String judul, String deskripsi, String tanggalMasuk, boolean isDipinjam,
-                    String peminjam, String tanggalPinjam, String urlGambar, String sumber ){
+                    String peminjam, String tanggalPinjam, String urlGambar, String sumber, String pdf ){
         this.id = id;
         this.judul = judul;
         this.deskripsi = deskripsi;
@@ -23,6 +24,9 @@ public class BukuItem {
         this.tanggalPinjam = tanggalPinjam;
         this.urlGambar = urlGambar;
         this.sumber = sumber;
+        this.pdf = pdf;
+
+
     }
 
 
@@ -60,5 +64,9 @@ public class BukuItem {
 
     public String getSumber() {
         return sumber;
+    }
+
+    public String getPdf() {
+        return pdf;
     }
 }

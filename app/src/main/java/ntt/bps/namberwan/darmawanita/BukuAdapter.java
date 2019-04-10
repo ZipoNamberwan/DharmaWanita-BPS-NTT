@@ -28,6 +28,7 @@ public class BukuAdapter extends RecyclerView.Adapter<BukuAdapter.Holder>{
     public static final String TANGGAL_PINJAM = "tanggal pinjam";
     public static final String URL_GAMBAR = "url gambar";
     public static final String SUMBER_BUKU = "sumber buku";
+    public static final String PDF_BUKU = "pdf buku";
 
     private List<BukuItem> list;
     private Context context;

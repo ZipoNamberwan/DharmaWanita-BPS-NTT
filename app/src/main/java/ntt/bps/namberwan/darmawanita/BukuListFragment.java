@@ -82,6 +82,7 @@ public class BukuListFragment extends Fragment {
                 i.putExtra(BukuAdapter.TANGGAL_PINJAM,item.getTanggalPinjam());
                 i.putExtra(BukuAdapter.URL_GAMBAR,item.getUrlGambar());
                 i.putExtra(BukuAdapter.SUMBER_BUKU, item.getSumber());
+                i.putExtra(BukuAdapter.PDF_BUKU, item.getPdf());
                 getActivity().startActivity(i);
             }
         });
@@ -125,8 +126,9 @@ public class BukuListFragment extends Fragment {
                         AppUtil.getDate(response.getJSONObject(i).getString("tanggalmasuk"),false),
                         !response.getJSONObject(i).getString("is_dipinjam").equals("0"),response.getJSONObject(i).getString("peminjam"),
                         AppUtil.getDate(response.getJSONObject(i).getString("tanggalpinjam"), false),
-                        getString(R.string.web_service)+response.getJSONObject(i).getString("gambar"),
-                        response.getJSONObject(i).getString("sumber")));
+                        getString(R.string.web_service) + response.getJSONObject(i).getString("gambar"),
+                        response.getJSONObject(i).getString("sumber"),
+                        getString(R.string.web_service) +  response.getJSONObject(i).getString("pdf")));
             }
             adapter.notifyItemRangeInserted(page * 10 + 1,response.length());
         } catch (JSONException e) {
