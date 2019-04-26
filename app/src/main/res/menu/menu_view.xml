@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ntt.bps.namberwan.darmawanita.MainActivity">
-    <item
+    <!--<item
         android:id="@+id/action_download"
         android:icon="@drawable/ic_file_download_black_24dp"
         app:showAsAction="ifRoom"
-        android:title="Download PDF"/>
+        android:title="Download PDF"/>-->
 </menu>

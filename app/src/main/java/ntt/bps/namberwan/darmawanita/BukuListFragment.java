@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -83,6 +84,9 @@ public class BukuListFragment extends Fragment {
                 i.putExtra(BukuAdapter.URL_GAMBAR,item.getUrlGambar());
                 i.putExtra(BukuAdapter.SUMBER_BUKU, item.getSumber());
                 i.putExtra(BukuAdapter.PDF_BUKU, item.getPdf());
+                i.putExtra(BukuAdapter.HARDCOPY, item.isHardCopyAvailable());
+                i.putExtra(BukuAdapter.SOFTCOPY, item.isSoftCopyAvailable());
+                i.putExtra(BukuAdapter.LINK_PDF, item.getLinkpdf());
                 getActivity().startActivity(i);
             }
         });
@@ -99,7 +103,8 @@ public class BukuListFragment extends Fragment {
     }
     private void addDataToArray(final int page) {
         isLoading = true;
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, getString(R.string.web_service)+"dwapi?page="+page+search, null,
+        String url = getString(R.string.web_service) + "dwapi?page=" + page + search;
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -112,6 +117,8 @@ public class BukuListFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 isLoading = false;
+                Toast.makeText(getActivity(), "Koneksi Gagal", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
 
@@ -121,14 +128,20 @@ public class BukuListFragment extends Fragment {
     private void addJSONToAdapter(JSONArray response, int page) {
         try {
             for (int i = 0; i < response.length(); i++){
+                String pdf = response.getJSONObject(i).getString("pdf");
+                if (!pdf.equals("")){
+                    pdf = getString(R.string.web_service) +  response.getJSONObject(i).getString("pdf");
+                }
                 list.add(new BukuItem(response.getJSONObject(i).getString("id"),
                         response.getJSONObject(i).getString("judul"),response.getJSONObject(i).getString("deskripsi"),
                         AppUtil.getDate(response.getJSONObject(i).getString("tanggalmasuk"),false),
                         !response.getJSONObject(i).getString("is_dipinjam").equals("0"),response.getJSONObject(i).getString("peminjam"),
                         AppUtil.getDate(response.getJSONObject(i).getString("tanggalpinjam"), false),
                         getString(R.string.web_service) + response.getJSONObject(i).getString("gambar"),
-                        response.getJSONObject(i).getString("sumber"),
-                        getString(R.string.web_service) +  response.getJSONObject(i).getString("pdf")));
+                        response.getJSONObject(i).getString("sumber"), pdf,
+                        response.getJSONObject(i).getString("hardcopy").equals("1"),
+                        response.getJSONObject(i).getString("softcopy").equals("1"),
+                        response.getJSONObject(i).getString("linkpdf")));
             }
             adapter.notifyItemRangeInserted(page * 10 + 1,response.length());
         } catch (JSONException e) {

@@ -17,9 +17,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -57,6 +60,9 @@ public class ViewBukuActivity extends AppCompatActivity {
     private String urlGambar;
     private String sumber;
     private String pdf;
+    private boolean isHardcopyAvailable;
+    private boolean isSoftcopyAvailable;
+    private String linkPdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,9 @@ public class ViewBukuActivity extends AppCompatActivity {
         urlGambar = getIntent().getStringExtra(BukuAdapter.URL_GAMBAR);
         sumber = getIntent().getStringExtra(BukuAdapter.SUMBER_BUKU);
         pdf  = getIntent().getStringExtra(BukuAdapter.PDF_BUKU);
+        isHardcopyAvailable = getIntent().getBooleanExtra(BukuAdapter.HARDCOPY, false);
+        isSoftcopyAvailable = getIntent().getBooleanExtra(BukuAdapter.SOFTCOPY, false);
+        linkPdf = getIntent().getStringExtra(BukuAdapter.LINK_PDF);
 
         TextView judulTextView = findViewById(R.id.judul);
         TextView deskripsiTextView = findViewById(R.id.desksripsi);
@@ -87,6 +96,11 @@ public class ViewBukuActivity extends AppCompatActivity {
         TextView tanggalMasukTextView = findViewById(R.id.tanggalmasuk);
         TextView statusTextView = findViewById(R.id.status);
         ImageView gambarImageView = findViewById(R.id.gambar);
+        TextView hardcopyTextView = findViewById(R.id.hardcopy);
+        TextView softcopyTextView = findViewById(R.id.softcopy);
+        View linkpdfView = findViewById(R.id.link_pdf_view);
+        TextView linkpdfTextView = findViewById(R.id.linkpdf);
+        Button downloadButton = findViewById(R.id.download);
 
         judulTextView.setText(judul);
         deskripsiTextView.setText(deskripsi);
@@ -107,6 +121,20 @@ public class ViewBukuActivity extends AppCompatActivity {
                 .fit()
                 .into(gambarImageView);
 
+        if (!isHardcopyAvailable){
+            hardcopyTextView.setVisibility(View.GONE);
+        }
+        if (!isSoftcopyAvailable){
+            softcopyTextView.setVisibility(View.GONE);
+        }
+        if (linkPdf.equals("") & pdf.equals("")){
+            linkpdfView.setVisibility(View.GONE);
+        } else {
+            linkpdfTextView.setText(linkPdf);
+        }
+        if (pdf.equals("")){
+            downloadButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -117,11 +145,14 @@ public class ViewBukuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_download) {
-            String namaFile = judul.replaceAll("\\W+", "");
-            download(this, pdf, "Download: " + judul, namaFile + ".pdf");
-
-        }
+        /*if(item.getItemId() == R.id.action_download) {
+            if (!pdf.equals("")) {
+                String namaFile = judul.replaceAll("\\W+", "");
+                download(this, pdf, "Download: " + judul, namaFile + ".pdf");
+            } else {
+                Toast.makeText(this, "Link download pdf tidak tersedia", Toast.LENGTH_SHORT).show();
+            }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -336,5 +367,14 @@ public class ViewBukuActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    public void onDownloadClickListener(View view) {
+        if (!pdf.equals("")) {
+            String namaFile = judul.replaceAll("\\W+", "");
+            download(this, pdf, "Download: " + judul, namaFile + ".pdf");
+        } else {
+            Toast.makeText(this, "Link download pdf tidak tersedia", Toast.LENGTH_SHORT).show();
+        }
     }
 }

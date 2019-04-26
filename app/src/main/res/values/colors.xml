@@ -37,4 +37,6 @@
     <color name="md_green_600">#43A047</color>
     <color name="md_red_600">#E53935</color>
 
+    <color name="md_grey_200">#EEEEEE</color>
+
 </resources>

@@ -12,9 +12,14 @@ public class BukuItem {
     private String urlGambar;
     private String sumber;
     private String pdf;
+    private boolean isSoftCopyAvailable;
+    private boolean isHardCopyAvailable;
+
+    private String linkpdf;
 
     public BukuItem(String id, String judul, String deskripsi, String tanggalMasuk, boolean isDipinjam,
-                    String peminjam, String tanggalPinjam, String urlGambar, String sumber, String pdf ){
+                    String peminjam, String tanggalPinjam, String urlGambar, String sumber, String pdf,
+                    boolean isHardCopyAvailable, boolean isSoftCopyAvailable, String linkpdf){
         this.id = id;
         this.judul = judul;
         this.deskripsi = deskripsi;
@@ -25,7 +30,9 @@ public class BukuItem {
         this.urlGambar = urlGambar;
         this.sumber = sumber;
         this.pdf = pdf;
-
+        this.isSoftCopyAvailable = isSoftCopyAvailable;
+        this.isHardCopyAvailable = isHardCopyAvailable;
+        this.linkpdf = linkpdf;
 
     }
 
@@ -68,5 +75,17 @@ public class BukuItem {
 
     public String getPdf() {
         return pdf;
+    }
+
+    public boolean isSoftCopyAvailable() {
+        return isSoftCopyAvailable;
+    }
+
+    public boolean isHardCopyAvailable() {
+        return isHardCopyAvailable;
+    }
+
+    public String getLinkpdf() {
+        return linkpdf;
     }
 }

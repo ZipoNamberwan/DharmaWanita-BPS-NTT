@@ -1,7 +1,6 @@
 package ntt.bps.namberwan.darmawanita;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -19,16 +18,19 @@ import java.util.List;
 
 public class BukuAdapter extends RecyclerView.Adapter<BukuAdapter.Holder>{
 
-    public static final String ID_BUKU = "id buku";
-    public static final String JUDUL_BUKU = "judul buku";
-    public static final String DESKRIPSI_BUKU = "deskripsi buku";
-    public static final String TANGGAL_MASUK = "tanggal masuk buku";
-    public static final String IS_DIPINJAM = "is dipinjam";
-    public static final String PEMINJAM = "peminjam";
-    public static final String TANGGAL_PINJAM = "tanggal pinjam";
-    public static final String URL_GAMBAR = "url gambar";
-    public static final String SUMBER_BUKU = "sumber buku";
-    public static final String PDF_BUKU = "pdf buku";
+    static final String ID_BUKU = "id buku";
+    static final String JUDUL_BUKU = "judul buku";
+    static final String DESKRIPSI_BUKU = "deskripsi buku";
+    static final String TANGGAL_MASUK = "tanggal masuk buku";
+    static final String IS_DIPINJAM = "is dipinjam";
+    static final String PEMINJAM = "peminjam";
+    static final String TANGGAL_PINJAM = "tanggal pinjam";
+    static final String URL_GAMBAR = "url gambar";
+    static final String SUMBER_BUKU = "sumber buku";
+    static final String PDF_BUKU = "pdf buku";
+    static final String HARDCOPY = "hardcopy";
+    static final String SOFTCOPY = "softcopy";
+    static final String LINK_PDF = "link pdf";
 
     private List<BukuItem> list;
     private Context context;
